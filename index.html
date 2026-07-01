@@ -122,11 +122,11 @@
     <span>Unity · C# 게임 개발</span>
     <span>ESP-IDF · C 임베디드</span>
     <span>ROS2 로보틱스</span>
-    <span>Android · Java</span>
+    <span>웹 (JS · PHP)</span>
   </div>
   <dl class="meta">
     <dt>대표 역량</dt><dd>게임 클라이언트 아키텍처 · 임베디드 하드웨어 브링업</dd>
-    <dt>주요 언어</dt><dd>C# · C / C++ · Java · Python</dd>
+    <dt>주요 언어</dt><dd>C# · C / C++ · JavaScript · PHP · Python</dd>
     <dt>대표 프로젝트</dt><dd>괴이탐사국: INSPECTOR · 바른자세 코치봇 · ROS2 AGV</dd>
   </dl>
   <div class="foot">
@@ -140,33 +140,33 @@
   <h2 class="sec"><span class="no">01</span>핵심 역량 &amp; 프로젝트 한눈에</h2>
   <div class="sec-line"></div>
   <p class="lead">한 언어·한 분야에 머물지 않고, <b>“무엇을 만들든 구조를 설계하고 끝까지 동작시킨다”</b>는
-     방식으로 게임·임베디드·로보틱스·모바일을 관통하는 공통 역량을 쌓았습니다.</p>
+     방식으로 게임·임베디드·로보틱스·웹을 관통하는 공통 역량을 쌓았습니다.</p>
 
   <h3 class="sub">집중 스킬 매트릭스</h3>
   <table>
     <tr><th style="width:20%">구분</th><th>보유 스킬 <span style="font-weight:400;opacity:.7">(★ = 집중 영역)</span></th></tr>
-    <tr><td><b>언어</b></td><td><b>C# ★</b> · <b>C / C++ ★</b>(임베디드) · Java · Python</td></tr>
-    <tr><td><b>엔진 · 프레임워크</b></td><td><b>Unity ★</b> · ESP-IDF / FreeRTOS ★ · ROS2 · Android SDK</td></tr>
+    <tr><td><b>언어</b></td><td><b>C# ★</b> · <b>C / C++ ★</b>(임베디드) · JavaScript · PHP · Python</td></tr>
+    <tr><td><b>엔진 · 프레임워크</b></td><td><b>Unity ★</b> · ESP-IDF / FreeRTOS ★ · ROS2 · 바닐라 JS · PHP</td></tr>
     <tr><td><b>설계 · 패턴</b></td><td>상태 머신(FSM) · 싱글톤 / CRTP 제네릭 · 데이터 주도 설계 · partial class 모듈화 · 이벤트 기반 결합</td></tr>
-    <tr><td><b>데이터 · 저장</b></td><td>JSON · ScriptableObject · SQLite · ContentProvider · PlayerPrefs · CSV 로깅</td></tr>
+    <tr><td><b>데이터 · 저장</b></td><td>JSON · ScriptableObject · PlayerPrefs · CSV 로깅 · PHP 세션 · 회원 인증</td></tr>
     <tr><td><b>하드웨어 · 통신</b></td><td>I2C(PCA9685 서보) · I2S(마이크 / 스피커) · GPIO / PWM · UART · 차동구동 기구학</td></tr>
     <tr><td><b>도구 · 협업</b></td><td>Git / GitHub 브랜치 전략 · PR 리뷰 · 크로스플랫폼 빌드(macOS ↔ Windows) · QA / 디버깅</td></tr>
   </table>
 
-  <h3 class="sub">프로젝트 요약</h3>
+  <h3 class="sub">프로젝트 요약 <span style="font-weight:400;font-size:9pt;color:var(--sub)">(모두 GitHub 공개)</span></h3>
   <table>
     <tr><th style="width:22%">프로젝트</th><th style="width:15%">유형</th><th>스택 · 핵심</th><th style="width:15%">역할</th></tr>
     <tr><td><b>괴이탐사국: INSPECTOR</b></td><td>팀 · 캡스톤 게임</td><td>Unity·C# — 전투 엔진 / 데이터 주도 아키텍처</td><td>클라이언트 개발 (단독)</td></tr>
     <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — 서보 보행 / AI 음성</td><td>펌웨어·브링업</td></tr>
     <tr><td><b>ROS2 운반 로봇(AGV)</b></td><td>팀 · 로보틱스</td><td>ROS2 — 라인트레이싱 / 차동구동 설계</td><td>문제정의·설계</td></tr>
-    <tr><td><b>FPS 프로토타입</b></td><td>학습 게임</td><td>Unity·C# — FSM 적 AI / NavMesh</td><td>구현</td></tr>
-    <tr><td><b>Android 앱 3종</b></td><td>학습 모바일</td><td>Java — SQLite · ContentProvider · Canvas</td><td>구현</td></tr>
+    <tr><td><b>꼬들 (make_world)</b></td><td>웹 게임</td><td>JavaScript — 한글 Wordle 게임 로직 / 단어 DB</td><td>개인 구현</td></tr>
+    <tr><td><b>PHP 회원 인증 웹앱</b></td><td>웹</td><td>PHP — 로그인·회원가입·중복확인·세션</td><td>개인 구현</td></tr>
   </table>
 
   <div class="grid3" style="margin-top:6px">
     <div class="card soft"><h4 style="color:var(--accent)">깊이 — 게임 아키텍처</h4><p style="margin:0;font-size:9pt">약 19,500줄 규모 전투 시스템을 partial class·제네릭·데이터 주도로 설계. <b>대규모 코드를 나누는 힘.</b></p></div>
     <div class="card soft"><h4 style="color:var(--accent2)">폭 — 하드웨어 브링업</h4><p style="margin:0;font-size:9pt">I2C 서보, I2S 오디오, 4족 보행을 <b>베어메탈 C로 직접 구동.</b> AI 프레임워크 크로스빌드까지.</p></div>
-    <div class="card soft"><h4 style="color:var(--teal)">기초 — CS 펀더멘털</h4><p style="margin:0;font-size:9pt">DB·ContentProvider·그래픽·로봇 기구학 등 <b>분야를 가리지 않는 기본기.</b></p></div>
+    <div class="card soft"><h4 style="color:var(--teal)">기초 — 웹 · CS 펀더멘털</h4><p style="margin:0;font-size:9pt">JS 게임 로직·PHP 회원 인증·로봇 기구학 등 <b>분야를 가리지 않는 기본기.</b></p></div>
   </div>
 
   <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
@@ -318,9 +318,9 @@
 
 <!-- ===== 4. ROS2 / FPS / Android ===== -->
 <section class="page">
-  <h2 class="sec"><span class="no">04</span>프로젝트 ③④⑤ — 로보틱스 · 게임 · 모바일</h2>
+  <h2 class="sec"><span class="no">04</span>프로젝트 ③④⑤ — 로보틱스 · 웹 게임 · 웹</h2>
   <div class="sec-line"></div>
-  <p class="lead">대표 프로젝트 외에도 <b>로봇 시스템 설계, 게임 AI, 모바일 기초</b>를 각각의 프로젝트로 다뤄
+  <p class="lead">대표 프로젝트 외에도 <b>로봇 시스템 설계, 웹 게임, 웹 인증 시스템</b>을 각각 GitHub 저장소로 공개해
      폭넓은 CS 기본기를 검증했습니다.</p>
 
   <h3 class="sub">③ ROS2 운반 로봇(AGV) 설계 &amp; 로보틱스 기구학</h3>
@@ -340,32 +340,32 @@
     <span class="chip t3">ROS2</span><span class="chip t3">AGV 시스템 설계</span><span class="chip t3">차동구동 기구학</span><span class="chip t3">센서·제어 이론</span>
   </p>
 
-  <h3 class="sub">④ FPS 프로토타입 — 게임 AI &amp; 전투</h3>
+  <h3 class="sub">④ 꼬들 (make_world) — 한글 Wordle 웹 게임</h3>
   <div class="grid2">
     <div class="card soft">
-      <h4>FSM 기반 적 AI</h4>
-      <p style="margin:0;font-size:9pt"><code>EnemyFSM</code>으로 대기→추격→공격→피격→복귀 상태를 전이하고,
-      <b>NavMesh</b> 경로탐색·<code>Animator</code> 연동으로 자연스러운 추적 구현.</p>
+      <h4>게임 로직 (바닐라 JS)</h4>
+      <p style="margin:0;font-size:9pt"><code>world.js</code>에 정답 판정·입력 처리·모드·<b>플레이 타이머</b>를 구현.
+      한글을 <b>자음/모음·쌍자음으로 분해</b>해 Wordle 규칙을 한글에 맞게 적용.</p>
     </div>
     <div class="card soft">
-      <h4>플레이어·전투 시스템</h4>
-      <p style="margin:0;font-size:9pt">이동·회전·발사(<code>PlayerFire</code>)·카메라 추적, 스포너·폭발·피격 이벤트 등
-      <b>FPS 코어 루프 전반</b>을 12개 스크립트로 구성.</p>
+      <h4>단어 DB &amp; 버전 관리</h4>
+      <p style="margin:0;font-size:9pt"><code>worldlist.js</code>(27KB)에 단어 데이터 분리, CSS로 UI 구성.
+      readme에 <b>버전별 변경·버그 이력</b>을 기록하며 반복 개선.</p>
     </div>
   </div>
   <p style="font-size:8.8pt;margin:2px 0 4px">
-    <span class="chip">C#</span><span class="chip">Unity</span><span class="chip t2">FSM AI</span><span class="chip t2">NavMesh</span><span class="chip t2">Animator</span>
+    <span class="chip">JavaScript</span><span class="chip">HTML / CSS</span><span class="chip t2">게임 로직</span><span class="chip t2">한글 자모 분해</span><span class="chip t3">버전 관리</span>
   </p>
 
-  <h3 class="sub">⑤ Android 앱 3종 — 데이터 &amp; 그래픽 기초</h3>
+  <h3 class="sub">⑤ PHP 회원 인증 웹앱 (PHP_assignment)</h3>
   <table>
-    <tr><th style="width:26%">앱</th><th>핵심 기술</th><th>구현</th></tr>
-    <tr><td><b>SQLite DB 앱</b></td><td>로컬 데이터베이스</td><td><code>DBHelper</code>로 테이블 생성·CRUD</td></tr>
-    <tr><td><b>ContentProvider 앱</b></td><td>앱 간 데이터 공유</td><td><code>PersonProvider</code> + <code>DBHelper</code> 연동</td></tr>
-    <tr><td><b>그래픽 앱</b></td><td>커스텀 뷰 · Canvas</td><td><code>ImageDisplayView</code>로 직접 드로잉</td></tr>
+    <tr><th style="width:26%">기능</th><th>핵심 기술</th><th>구현</th></tr>
+    <tr><td><b>회원가입</b></td><td>서버 사이드 처리 · 유효성</td><td><code>register_add.php</code> · <code>register_check_id.php</code>(아이디 중복확인)</td></tr>
+    <tr><td><b>로그인 / 로그아웃</b></td><td>세션 인증</td><td><code>login.php</code> · <code>logout.php</code> + 세션 유지</td></tr>
+    <tr><td><b>메인 · 화면</b></td><td>서버·클라이언트 연동</td><td><code>main.php</code> · <code>login/register.html</code> · CSS/JS</td></tr>
   </table>
   <p style="font-size:8.8pt;margin:2px 0 4px">
-    <span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip t2">SQLite</span><span class="chip t2">ContentProvider</span><span class="chip t2">Canvas 그래픽</span>
+    <span class="chip">PHP</span><span class="chip">HTML / CSS / JS</span><span class="chip t2">세션 인증</span><span class="chip t2">회원가입·중복확인</span>
   </p>
 
   <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
@@ -396,11 +396,11 @@
 
   <h3 class="sub">③ 분야를 가리지 않는 CS 기본기 &amp; 협업 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 넓은 기반</span></h3>
   <ul>
-    <li><b>상태 머신</b>을 게임 전투(BattlePhase)와 게임 AI(EnemyFSM), 디바이스 제어에 반복 적용.</li>
-    <li><b>데이터 계층</b>을 JSON·SQLite·ContentProvider·CSV로 상황에 맞게 선택.</li>
+    <li><b>상태 머신</b>을 게임 전투(BattlePhase)·디바이스 제어·게임 판정 로직에 반복 적용.</li>
+    <li><b>데이터 계층</b>을 JSON·CSV 로깅·PHP 세션·단어 DB(JS)로 상황에 맞게 선택.</li>
     <li><b>협업</b>: Git 기능별 브랜치·PR, QA 피드백 15+항목 반복 반영, 팀 문서를 코드로 번역.</li>
   </ul>
-  <div class="callout"><span class="t">근거</span>FPS(FSM·NavMesh) · Android(SQLite·Provider·Canvas) · ROS2(기구학·설계) · INSPECTOR(팀 협업)</div>
+  <div class="callout"><span class="t">근거</span>꼬들(JS 게임 로직) · PHP 회원 인증(세션) · ROS2(기구학·설계) · INSPECTOR(팀 협업)</div>
 
   <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
   <span class="pager">05 / 07</span>
