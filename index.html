@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>고성모 개발자 포트폴리오</title>
+<style>
+  :root{
+    --ink:#1b1b21;
+    --sub:#565663;
+    --line:#e3e3ea;
+    --accent:#33386e;      /* 딥 인디고 (주) */
+    --accent-soft:#ecedf7;
+    --accent2:#b1462c;     /* 테라코타 (강조) */
+    --accent2-soft:#f8ece7;
+    --teal:#1f6f6b;
+    --bg-soft:#faf9fb;
+    --code-bg:#f3f3f6;
+    --ok:#2f7d4f;
+  }
+  *{ box-sizing:border-box; }
+  @page{ size:A4; margin:0; }
+  html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  body{
+    font-family:"Apple SD Gothic Neo","Pretendard","Noto Sans KR",system-ui,sans-serif;
+    color:var(--ink); margin:0; line-height:1.56; font-size:10.1pt; letter-spacing:-0.1px;
+  }
+  .page{
+    width:210mm; height:297mm; overflow:hidden; padding:17mm 17mm 15mm;
+    margin:0 auto; background:#fff; position:relative;
+  }
+  .page:not(:last-child){ page-break-after:always; }
+
+  /* 표지 */
+  .cover{ display:flex; flex-direction:column; justify-content:center;
+          background:linear-gradient(155deg,#101120 0%,#1d2044 55%,#2a2d58 100%); color:#f2f2f6; }
+  .cover .kicker{ color:#9aa0d8; letter-spacing:5px; font-size:10pt; text-transform:uppercase; margin-bottom:20px; }
+  .cover h1{ font-size:40pt; line-height:1.1; margin:0; font-weight:800; }
+  .cover h1 .sub{ display:block; font-size:16.5pt; font-weight:400; color:#c3c6e6; margin-top:16px; letter-spacing:0.5px; }
+  .cover .rule{ width:72px; height:4px; background:var(--accent2); margin:28px 0; }
+  .cover .tag{ font-size:12pt; color:#dfe0ef; max-width:540px; line-height:1.75; }
+  .cover .domains{ margin-top:44px; display:flex; gap:10px; flex-wrap:wrap; }
+  .cover .domains span{ border:1px solid #4a4e86; color:#d3d5ee; padding:6px 14px; border-radius:30px; font-size:9.5pt; }
+  .cover .meta{ margin-top:40px; display:grid; grid-template-columns:auto 1fr; gap:7px 26px; font-size:10.3pt; }
+  .cover .meta dt{ color:#8f93c4; }
+  .cover .meta dd{ margin:0; color:#f2f2f6; font-weight:600; }
+  .cover .foot{ position:absolute; bottom:17mm; left:17mm; right:17mm; display:flex; justify-content:space-between;
+                color:#8f93c4; font-size:9pt; border-top:1px solid #3a3d6e; padding-top:12px; }
+
+  h2.sec{ font-size:15.5pt; font-weight:800; margin:0 0 4px; letter-spacing:-0.3px; }
+  h2.sec .no{ color:var(--accent2); font-weight:800; margin-right:9px; }
+  .sec-line{ height:3px; width:44px; background:var(--accent2); margin:0 0 16px; }
+  h3.sub{ font-size:11.4pt; font-weight:700; margin:15px 0 6px; color:var(--accent); display:flex; align-items:center; gap:8px; }
+  h3.sub::before{ content:""; width:5px; height:15px; background:var(--accent); border-radius:2px; display:inline-block; }
+  h4{ font-size:10.2pt; font-weight:700; margin:12px 0 5px; }
+  p{ margin:5px 0 8px; }
+  strong{ color:var(--accent); font-weight:700; }
+  em{ font-style:normal; background:var(--accent2-soft); color:var(--accent2); padding:0 4px; border-radius:3px; font-weight:600; }
+  code{ font-family:"SF Mono","JetBrains Mono",Menlo,monospace; font-size:8.6pt; background:var(--code-bg);
+        padding:1px 5px; border-radius:4px; color:#3a3f78; }
+  ul,ol{ margin:5px 0 10px; padding-left:19px; }
+  li{ margin:2.5px 0; }
+  .lead{ font-size:10.6pt; color:var(--sub); border-left:3px solid var(--accent2); padding:2px 0 2px 14px; margin:0 0 15px; }
+
+  .grid2{ display:grid; grid-template-columns:1fr 1fr; gap:13px; }
+  .grid3{ display:grid; grid-template-columns:repeat(3,1fr); gap:11px; }
+  .card{ border:1px solid var(--line); border-radius:10px; padding:13px 15px; background:#fff; }
+  .card.soft{ background:var(--bg-soft); }
+  .card h4{ margin-top:0; }
+  .card .big{ font-size:21pt; font-weight:800; color:var(--accent); line-height:1; }
+  .card .lbl{ font-size:8.5pt; color:var(--sub); margin-top:5px; }
+
+  .metrics{ display:grid; grid-template-columns:repeat(4,1fr); gap:11px; margin:4px 0 16px; }
+  .metrics .card{ text-align:center; padding:14px 6px; }
+
+  table{ width:100%; border-collapse:collapse; margin:8px 0 12px; font-size:9pt; }
+  th,td{ text-align:left; padding:5.5px 9px; border-bottom:1px solid var(--line); vertical-align:top; }
+  th{ background:#26262e; color:#fff; font-weight:600; font-size:8.8pt; }
+  tr:nth-child(even) td{ background:var(--bg-soft); }
+  td code{ font-size:8.2pt; }
+
+  .chip{ display:inline-block; font-size:8pt; font-weight:600; padding:2px 9px; border-radius:20px; margin:2px 3px 2px 0;
+         background:var(--accent-soft); color:var(--accent); }
+  .chip.t2{ background:var(--accent2-soft); color:var(--accent2); }
+  .chip.t3{ background:#e7f1f0; color:var(--teal); }
+
+  pre{ background:#1c1c26; color:#e6e6ec; border-radius:9px; padding:12px 15px; font-size:8.2pt;
+       line-height:1.5; overflow:hidden; margin:8px 0 12px; font-family:"SF Mono","JetBrains Mono",Menlo,monospace; }
+  pre .c{ color:#6f7a8c; } pre .k{ color:#a5a0e6; } pre .s{ color:#9ec98f; } pre .t{ color:#7fb3d5; }
+
+  .callout{ border:1px solid var(--line); border-left:4px solid var(--accent); background:#f5f6fc;
+            border-radius:0 8px 8px 0; padding:10px 15px; margin:11px 0; font-size:9.4pt; }
+  .callout .t{ font-weight:700; color:var(--accent); display:block; margin-bottom:3px; }
+  .callout.why{ border-left-color:var(--accent2); background:var(--accent2-soft); }
+  .callout.why .t{ color:var(--accent2); }
+
+  .fig{ text-align:center; margin:12px 0; }
+  .fig svg{ max-width:100%; }
+  .cap{ font-size:8.5pt; color:var(--sub); margin-top:5px; text-align:center; }
+
+  .pj-head{ display:flex; justify-content:space-between; align-items:baseline; border-bottom:2px solid var(--accent);
+            padding-bottom:6px; margin:2px 0 10px; }
+  .pj-head .name{ font-size:13pt; font-weight:800; color:var(--accent); }
+  .pj-head .role{ font-size:9pt; color:var(--sub); }
+
+  .pager{ position:absolute; bottom:11mm; right:17mm; font-size:8.4pt; color:#adadba; }
+  .brand{ position:absolute; bottom:11mm; left:17mm; font-size:8.4pt; color:var(--accent2); font-weight:700; letter-spacing:0.4px; }
+  .avoid{ page-break-inside:avoid; }
+</style>
+</head>
+<body>
+
+<!-- ===== 표지 ===== -->
+<section class="page cover">
+  <div class="kicker">Developer Portfolio · 2026</div>
+  <h1>고성모<span class="sub">게임 · 임베디드 · 로보틱스를 넘나드는 소프트웨어 개발자</span></h1>
+  <div class="rule"></div>
+  <p class="tag">복잡한 시스템을 <b style="color:#c9cbec">구조로 나누고</b>, 하드웨어부터 게임 로직까지
+     <b style="color:#c9cbec">직접 동작시키는 것</b>에 집중합니다.<br>
+     Unity 게임 아키텍처를 중심으로, ESP32 임베디드 펌웨어와 ROS2 로보틱스까지
+     여러 도메인의 프로젝트를 완주했습니다.</p>
+  <div class="domains">
+    <span>Unity · C# 게임 개발</span>
+    <span>ESP-IDF · C 임베디드</span>
+    <span>ROS2 로보틱스</span>
+    <span>Android · Java</span>
+  </div>
+  <dl class="meta">
+    <dt>대표 역량</dt><dd>게임 클라이언트 아키텍처 · 임베디드 하드웨어 브링업</dd>
+    <dt>주요 언어</dt><dd>C# · C / C++ · Java · Python</dd>
+    <dt>대표 프로젝트</dt><dd>괴이탐사국: INSPECTOR · 바른자세 코치봇 · ROS2 AGV</dd>
+  </dl>
+  <div class="foot">
+    <span>SUNGMO KO · Software Developer</span>
+    <span>Game · Embedded · Robotics</span>
+  </div>
+</section>
+
+<!-- ===== 1. 핵심 역량 종합 ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">01</span>핵심 역량 &amp; 프로젝트 한눈에</h2>
+  <div class="sec-line"></div>
+  <p class="lead">한 언어·한 분야에 머물지 않고, <b>“무엇을 만들든 구조를 설계하고 끝까지 동작시킨다”</b>는
+     방식으로 게임·임베디드·로보틱스·모바일을 관통하는 공통 역량을 쌓았습니다.</p>
+
+  <h3 class="sub">집중 스킬 매트릭스</h3>
+  <table>
+    <tr><th style="width:20%">구분</th><th>보유 스킬 <span style="font-weight:400;opacity:.7">(★ = 집중 영역)</span></th></tr>
+    <tr><td><b>언어</b></td><td><b>C# ★</b> · <b>C / C++ ★</b>(임베디드) · Java · Python</td></tr>
+    <tr><td><b>엔진 · 프레임워크</b></td><td><b>Unity ★</b> · ESP-IDF / FreeRTOS ★ · ROS2 · Android SDK</td></tr>
+    <tr><td><b>설계 · 패턴</b></td><td>상태 머신(FSM) · 싱글톤 / CRTP 제네릭 · 데이터 주도 설계 · partial class 모듈화 · 이벤트 기반 결합</td></tr>
+    <tr><td><b>데이터 · 저장</b></td><td>JSON · ScriptableObject · SQLite · ContentProvider · PlayerPrefs · CSV 로깅</td></tr>
+    <tr><td><b>하드웨어 · 통신</b></td><td>I2C(PCA9685 서보) · I2S(마이크 / 스피커) · GPIO / PWM · UART · 차동구동 기구학</td></tr>
+    <tr><td><b>도구 · 협업</b></td><td>Git / GitHub 브랜치 전략 · PR 리뷰 · 크로스플랫폼 빌드(macOS ↔ Windows) · QA / 디버깅</td></tr>
+  </table>
+
+  <h3 class="sub">프로젝트 요약</h3>
+  <table>
+    <tr><th style="width:22%">프로젝트</th><th style="width:15%">유형</th><th>스택 · 핵심</th><th style="width:15%">역할</th></tr>
+    <tr><td><b>괴이탐사국: INSPECTOR</b></td><td>팀 · 캡스톤 게임</td><td>Unity·C# — 전투 엔진 / 데이터 주도 아키텍처</td><td>클라이언트 개발 (단독)</td></tr>
+    <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — 서보 보행 / AI 음성</td><td>펌웨어·브링업</td></tr>
+    <tr><td><b>ROS2 운반 로봇(AGV)</b></td><td>팀 · 로보틱스</td><td>ROS2 — 라인트레이싱 / 차동구동 설계</td><td>문제정의·설계</td></tr>
+    <tr><td><b>FPS 프로토타입</b></td><td>학습 게임</td><td>Unity·C# — FSM 적 AI / NavMesh</td><td>구현</td></tr>
+    <tr><td><b>Android 앱 3종</b></td><td>학습 모바일</td><td>Java — SQLite · ContentProvider · Canvas</td><td>구현</td></tr>
+  </table>
+
+  <div class="grid3" style="margin-top:6px">
+    <div class="card soft"><h4 style="color:var(--accent)">깊이 — 게임 아키텍처</h4><p style="margin:0;font-size:9pt">약 19,500줄 규모 전투 시스템을 partial class·제네릭·데이터 주도로 설계. <b>대규모 코드를 나누는 힘.</b></p></div>
+    <div class="card soft"><h4 style="color:var(--accent2)">폭 — 하드웨어 브링업</h4><p style="margin:0;font-size:9pt">I2C 서보, I2S 오디오, 4족 보행을 <b>베어메탈 C로 직접 구동.</b> AI 프레임워크 크로스빌드까지.</p></div>
+    <div class="card soft"><h4 style="color:var(--teal)">기초 — CS 펀더멘털</h4><p style="margin:0;font-size:9pt">DB·ContentProvider·그래픽·로봇 기구학 등 <b>분야를 가리지 않는 기본기.</b></p></div>
+  </div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">01 / 07</span>
+</section>
+
+<!-- ===== 2. INSPECTOR ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">02</span>대표 프로젝트 ① — 괴이탐사국: INSPECTOR</h2>
+  <div class="sec-line"></div>
+  <div class="pj-head">
+    <span class="name">로그라이크 덱빌딩 오토배틀러</span>
+    <span class="role">Unity · C# · 팀 578(3인) 캡스톤 · 클라이언트 개발 단독 담당 · 2026.03–06</span>
+  </div>
+  <p class="lead">카드는 <em>전투 변수(스택)</em>만 만들고 동료가 <em>자동으로</em> 싸우는 “간접 전투” 게임.
+     기획 명세를 <b>실제 동작하는 전투 엔진·시스템 코드</b>로 단독 구현했습니다.</p>
+
+  <div class="metrics">
+    <div class="card"><div class="big">100</div><div class="lbl">C# 스크립트</div></div>
+    <div class="card"><div class="big">19.5K</div><div class="lbl">코드 라인</div></div>
+    <div class="card"><div class="big">78</div><div class="lbl">개인 커밋</div></div>
+    <div class="card"><div class="big">13+</div><div class="lbl">기능 브랜치·PR</div></div>
+  </div>
+
+  <h3 class="sub">설계 하이라이트</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>① 전투 엔진을 partial class로 분리</h4>
+      <p style="margin:0;font-size:9pt">약 2,665줄로 커진 <code>BattleManager</code>를 <b>5개 파일</b>로 책임 분리 —
+      흐름(<code>.Phases</code>)과 계산(<code>.Combat</code>), 적 AI(<code>.EnemyAction</code>)를 격리해 유지보수성 확보.</p>
+    </div>
+    <div class="card">
+      <h4>② 반복 패턴을 CRTP 제네릭으로 일반화</h4>
+      <p style="margin:0;font-size:9pt"><code>Singleton&lt;T&gt;</code>·<code>BaseCurrency&lt;T&gt;</code>·<code>RoleCostBase&lt;T&gt;</code>로
+      인스턴스 관리·저장·UI 갱신의 중복을 제거. 타입 안전 + 중복 인스턴스 자동 제거.</p>
+    </div>
+    <div class="card">
+      <h4>③ 데이터 주도 설계 (JSON + SO)</h4>
+      <p style="margin:0;font-size:9pt">동료·스킬·적 정의를 <b>JSON</b>으로 빼내 기획자가 코드 없이 밸런싱.
+      DB 5종이 <code>Dictionary</code> 캐싱·조회만 담당하고 상태는 SO가 관리.</p>
+    </div>
+    <div class="card">
+      <h4>④ 데이터로 조종하는 적 AI</h4>
+      <p style="margin:0;font-size:9pt"><b>가중치 랜덤</b> 스킬 선택 + 타겟팅 매트릭스(도발·소환·독).
+      <code>weight</code>·<code>targeting</code> 값만 바꾸면 AI 재구성. 4스킬 보스 구현.</p>
+    </div>
+  </div>
+
+  <h3 class="sub">전투 페이즈 상태 머신</h3>
+  <div class="fig avoid">
+    <svg viewBox="0 0 720 92" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
+      <defs><marker id="a1" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#33386e"/></marker></defs>
+      <g font-size="9" text-anchor="middle">
+        <g><rect x="4"   y="22" width="92" height="38" rx="8" fill="#ecedf7" stroke="#33386e"/><text x="50" y="39" font-weight="700" fill="#33386e">DrawPhase</text><text x="50" y="52" font-size="7.5" fill="#565663">드로우</text></g>
+        <g><rect x="112" y="22" width="104" height="38" rx="8" fill="#f8ece7" stroke="#b1462c"/><text x="164" y="39" font-weight="700" fill="#b1462c">PlayerCardPlay</text><text x="164" y="52" font-size="7.5" fill="#565663">스택 생성</text></g>
+        <g><rect x="232" y="22" width="100" height="38" rx="8" fill="#ecedf7" stroke="#33386e"/><text x="282" y="39" font-weight="700" fill="#33386e">Initiative</text><text x="282" y="52" font-size="7.5" fill="#565663">선공 판정</text></g>
+        <g><rect x="348" y="22" width="150" height="38" rx="8" fill="#ecedf7" stroke="#33386e"/><text x="423" y="39" font-weight="700" fill="#33386e">First / Second Action</text><text x="423" y="52" font-size="7.5" fill="#565663">역할 기반 자동 행동</text></g>
+        <g><rect x="514" y="22" width="96" height="38" rx="8" fill="#fff5e9" stroke="#b58a12"/><text x="562" y="39" font-weight="700" fill="#a9770f">Result</text><text x="562" y="52" font-size="7.5" fill="#565663">사망·스트레스</text></g>
+        <g><rect x="626" y="22" width="90" height="38" rx="8" fill="#141525"/><text x="671" y="39" font-weight="700" fill="#c3c6e6">BattleEnd</text><text x="671" y="52" font-size="7.5" fill="#9aa0d8">승/패</text></g>
+      </g>
+      <g stroke="#33386e" stroke-width="1.5" marker-end="url(#a1)" fill="none">
+        <line x1="96" y1="41" x2="110" y2="41"/><line x1="216" y1="41" x2="230" y2="41"/>
+        <line x1="332" y1="41" x2="346" y2="41"/><line x1="498" y1="41" x2="512" y2="41"/><line x1="610" y1="41" x2="624" y2="41"/>
+      </g>
+      <path d="M562,60 C480,84 160,84 50,62" stroke="#b1462c" stroke-width="1.3" fill="none" stroke-dasharray="5 3" marker-end="url(#a1)"/>
+      <text x="300" y="82" font-size="8" fill="#b1462c" text-anchor="middle">양측 생존 → 다음 턴 반복</text>
+    </svg>
+    <div class="cap">그림 1. <code>BattlePhase</code> enum 상태 머신 — 각 상태를 <code>.Phases.cs</code>의 <code>Handle*</code> 핸들러로 대응</div>
+  </div>
+
+  <div class="card" style="margin-top:4px">
+    <span style="font-size:8.6pt;color:var(--sub)">사용 스킬</span><br>
+    <span class="chip">C#</span><span class="chip">Unity</span><span class="chip">partial class</span><span class="chip">CRTP 제네릭</span>
+    <span class="chip t2">데이터 주도(JSON+SO)</span><span class="chip t2">상태 머신</span><span class="chip t2">이벤트 기반 결합</span>
+    <span class="chip t3">Git 브랜치·PR</span><span class="chip t3">QA 반복 대응</span>
+  </div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">02 / 07</span>
+</section>
+
+<!-- ===== 3. 바른자세 코치봇 ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">03</span>대표 프로젝트 ② — 바른자세 코치봇</h2>
+  <div class="sec-line"></div>
+  <div class="pj-head">
+    <span class="name">ESP32-S3 기반 AI 4족 자세 코치 로봇</span>
+    <span class="role">ESP-IDF v5.5.4 · C / C++ · FreeRTOS · Xiaozhi AI · 펌웨어 &amp; 하드웨어 브링업</span>
+  </div>
+  <p class="lead">센서가 <em>앞으로 숙인 자세</em>를 감지하면 <em>AI 음성</em>으로 자세를 교정해 주는 4족 로봇.
+     보드 점등부터 서보 보행·오디오·AI 연동까지 <b>하드웨어를 바닥부터 직접 올렸습니다.</b></p>
+
+  <h3 class="sub">단계별 하드웨어 브링업 파이프라인</h3>
+  <div class="fig avoid">
+    <svg viewBox="0 0 720 108" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
+      <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b1462c"/></marker></defs>
+      <g font-size="8.5" text-anchor="middle">
+        <g><rect x="2"   y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="44" y="52" font-weight="700">00 보드</text><text x="44" y="66" font-size="7" fill="#565663">FreeRTOS</text></g>
+        <g><rect x="98"  y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="140" y="52" font-weight="700">01 OLED</text><text x="140" y="66" font-size="7" fill="#565663">디스플레이</text></g>
+        <g><rect x="194" y="34" width="84" height="42" rx="8" fill="#f8ece7" stroke="#b1462c"/><text x="236" y="52" font-weight="700" fill="#b1462c">02 서보</text><text x="236" y="66" font-size="7" fill="#565663">I2C·PCA9685</text></g>
+        <g><rect x="290" y="34" width="84" height="42" rx="8" fill="#f8ece7" stroke="#b1462c"/><text x="332" y="52" font-weight="700" fill="#b1462c">03 보행</text><text x="332" y="66" font-size="7" fill="#565663">4족 게이트</text></g>
+        <g><rect x="386" y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="428" y="52" font-weight="700">04 스피커</text><text x="428" y="66" font-size="7" fill="#565663">I2S 출력</text></g>
+        <g><rect x="482" y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="524" y="52" font-weight="700">05 마이크</text><text x="524" y="66" font-size="7" fill="#565663">I2S 입력</text></g>
+        <g><rect x="578" y="34" width="84" height="42" rx="8" fill="#e7f1f0" stroke="#1f6f6b"/><text x="620" y="52" font-weight="700" fill="#1f6f6b">06 반응</text><text x="620" y="66" font-size="7" fill="#565663">자세→AI</text></g>
+        <g><rect x="674" y="34" width="44" height="42" rx="8" fill="#141525"/><text x="696" y="55" font-weight="700" fill="#c3c6e6" font-size="8">AI</text><text x="696" y="67" font-size="6.5" fill="#9aa0d8">Xiaozhi</text></g>
+      </g>
+      <g stroke="#b1462c" stroke-width="1.4" marker-end="url(#a2)" fill="none">
+        <line x1="86" y1="55" x2="96" y2="55"/><line x1="182" y1="55" x2="192" y2="55"/><line x1="278" y1="55" x2="288" y2="55"/>
+        <line x1="374" y1="55" x2="384" y2="55"/><line x1="470" y1="55" x2="480" y2="55"/><line x1="566" y1="55" x2="576" y2="55"/><line x1="662" y1="55" x2="672" y2="55"/>
+      </g>
+      <text x="360" y="98" font-size="8" fill="#565663" text-anchor="middle">각 단계를 독립 ESP-IDF 프로젝트로 검증 → 통합 (총 약 2,000줄 C 브링업 코드)</text>
+    </svg>
+    <div class="cap">그림 2. 위험을 한 단계씩 줄이는 브링업 전략 — 하나가 확실히 동작한 뒤 다음 하드웨어로 진행</div>
+  </div>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>베어메탈 I2C 서보 제어</h4>
+      <p style="margin:0;font-size:9pt">라이브러리 없이 <code>driver/i2c</code>로 <b>PCA9685</b> 16채널 PWM 컨트롤러(0x40)를 직접 제어해
+      다리 서보 각도를 명령. 이를 시퀀스로 엮어 <b>4족 보행 게이트</b> 구현(<code>03_walk_test</code>, 463줄).</p>
+    </div>
+    <div class="card">
+      <h4>I2S 오디오 입출력</h4>
+      <p style="margin:0;font-size:9pt"><code>i2s_std</code>로 마이크 캡처·스피커 재생을 구성하고,
+      자세 감지 이벤트에 <b>음성 반응</b>을 연결(<code>06_mic_reaction_test</code>, 477줄).</p>
+    </div>
+    <div class="card">
+      <h4>AI 프레임워크 이식 · 크로스빌드</h4>
+      <p style="margin:0;font-size:9pt">Xiaozhi AI 펌웨어(디바이스 상태머신·<code>mcp_server</code>·OTA)를
+      <b>Windows 전용 가이드를 macOS로 이식</b>해 ESP-IDF v5.5.4로 빌드 성공.</p>
+    </div>
+    <div class="card">
+      <h4>재현 가능한 실행 환경 구성</h4>
+      <p style="margin:0;font-size:9pt"><code>demo.sh</code>·<code>flash_robot.sh</code>로 포트 자동 탐색·플래시·모니터를 스크립트화 —
+      <b>함정(읽기전용 폴더·IDF_TARGET·포트)</b>을 문서화해 재현성 확보.</p>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:8px">
+    <span style="font-size:8.6pt;color:var(--sub)">사용 스킬</span><br>
+    <span class="chip">C / C++</span><span class="chip">ESP-IDF</span><span class="chip">FreeRTOS</span>
+    <span class="chip t2">I2C / PCA9685</span><span class="chip t2">I2S 오디오</span><span class="chip t2">GPIO·PWM 서보</span>
+    <span class="chip t3">크로스플랫폼 빌드</span><span class="chip t3">Bash 자동화</span><span class="chip t3">AI 음성 연동</span>
+  </div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">03 / 07</span>
+</section>
+
+<!-- ===== 4. ROS2 / FPS / Android ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">04</span>프로젝트 ③④⑤ — 로보틱스 · 게임 · 모바일</h2>
+  <div class="sec-line"></div>
+  <p class="lead">대표 프로젝트 외에도 <b>로봇 시스템 설계, 게임 AI, 모바일 기초</b>를 각각의 프로젝트로 다뤄
+     폭넓은 CS 기본기를 검증했습니다.</p>
+
+  <h3 class="sub">③ ROS2 운반 로봇(AGV) 설계 &amp; 로보틱스 기구학</h3>
+  <div class="grid2">
+    <div class="card soft">
+      <h4>자율주행 운반 로봇 프로토타입 정의</h4>
+      <p style="margin:0;font-size:9pt">공정 부품 운송 자동화를 위한 <b>라인트레이싱 AGV</b> 문제정의·요구사항 설계.
+      경로 인식, <b>CSV 주행 데이터 로깅</b>, 초음파/LiDAR 안전정지, <b>MES·PLC 연동 규격</b>, 1시간 구동 등 실무형 요구 도출.</p>
+    </div>
+    <div class="card soft">
+      <h4>로봇 기구학·제어 이론</h4>
+      <p style="margin:0;font-size:9pt"><b>차동구동</b>(v = ωR), 라디안, 엔코더, 모터, 센서, 마이크로컨트롤러, 제어 등
+      <b>9개 주제</b>를 출처 교차검증하며 정리. ROS2 참고 코드 포함.</p>
+    </div>
+  </div>
+  <p style="font-size:8.8pt;margin:2px 0 4px">
+    <span class="chip t3">ROS2</span><span class="chip t3">AGV 시스템 설계</span><span class="chip t3">차동구동 기구학</span><span class="chip t3">센서·제어 이론</span>
+  </p>
+
+  <h3 class="sub">④ FPS 프로토타입 — 게임 AI &amp; 전투</h3>
+  <div class="grid2">
+    <div class="card soft">
+      <h4>FSM 기반 적 AI</h4>
+      <p style="margin:0;font-size:9pt"><code>EnemyFSM</code>으로 대기→추격→공격→피격→복귀 상태를 전이하고,
+      <b>NavMesh</b> 경로탐색·<code>Animator</code> 연동으로 자연스러운 추적 구현.</p>
+    </div>
+    <div class="card soft">
+      <h4>플레이어·전투 시스템</h4>
+      <p style="margin:0;font-size:9pt">이동·회전·발사(<code>PlayerFire</code>)·카메라 추적, 스포너·폭발·피격 이벤트 등
+      <b>FPS 코어 루프 전반</b>을 12개 스크립트로 구성.</p>
+    </div>
+  </div>
+  <p style="font-size:8.8pt;margin:2px 0 4px">
+    <span class="chip">C#</span><span class="chip">Unity</span><span class="chip t2">FSM AI</span><span class="chip t2">NavMesh</span><span class="chip t2">Animator</span>
+  </p>
+
+  <h3 class="sub">⑤ Android 앱 3종 — 데이터 &amp; 그래픽 기초</h3>
+  <table>
+    <tr><th style="width:26%">앱</th><th>핵심 기술</th><th>구현</th></tr>
+    <tr><td><b>SQLite DB 앱</b></td><td>로컬 데이터베이스</td><td><code>DBHelper</code>로 테이블 생성·CRUD</td></tr>
+    <tr><td><b>ContentProvider 앱</b></td><td>앱 간 데이터 공유</td><td><code>PersonProvider</code> + <code>DBHelper</code> 연동</td></tr>
+    <tr><td><b>그래픽 앱</b></td><td>커스텀 뷰 · Canvas</td><td><code>ImageDisplayView</code>로 직접 드로잉</td></tr>
+  </table>
+  <p style="font-size:8.8pt;margin:2px 0 4px">
+    <span class="chip">Java</span><span class="chip">Android SDK</span><span class="chip t2">SQLite</span><span class="chip t2">ContentProvider</span><span class="chip t2">Canvas 그래픽</span>
+  </p>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">04 / 07</span>
+</section>
+
+<!-- ===== 5. 집중 스킬 심층 ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">05</span>집중 스킬 심층 정리</h2>
+  <div class="sec-line"></div>
+  <p class="lead">여러 프로젝트를 관통하는 <b>세 가지 집중 스킬</b>과, 그것을 뒷받침하는 실제 근거를 정리했습니다.</p>
+
+  <h3 class="sub">① 대규모 코드를 “나누는” 아키텍처 감각 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 가장 깊은 역량</span></h3>
+  <ul>
+    <li><b>모듈 분리</b>: 2,665줄 전투 시스템을 partial class 5개로, 비대한 데이터 클래스를 <code>.Hp/.Skill/.Stress</code>로 분할.</li>
+    <li><b>중복 일반화</b>: 싱글톤·재화·스택의 공통 로직을 <b>CRTP 제네릭 베이스</b>로 추출.</li>
+    <li><b>관심사 분리</b>: 정의 데이터(JSON)와 상태(SO), 로직과 표현(이벤트 기반)을 분리.</li>
+  </ul>
+  <div class="callout why"><span class="t">근거</span>INSPECTOR — <code>BattleManager.*</code>, <code>Singleton&lt;T&gt;</code>, <code>BaseCurrency&lt;T&gt;</code>, 5종 JSON 데이터베이스</div>
+
+  <h3 class="sub">② 하드웨어를 바닥부터 올리는 임베디드 브링업 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 두 번째 집중 영역</span></h3>
+  <ul>
+    <li><b>단계적 검증</b>: 보드→OLED→서보→보행→오디오→AI를 <b>독립 프로젝트로 하나씩</b> 확인 후 통합.</li>
+    <li><b>저수준 통신</b>: 라이브러리 없이 I2C(PCA9685)·I2S를 레지스터 수준에서 제어.</li>
+    <li><b>환경 정복</b>: Windows 전용 빌드를 macOS로 이식하고, 실패 함정을 스크립트·문서로 재현 가능하게 정리.</li>
+  </ul>
+  <div class="callout why"><span class="t">근거</span>바른자세 코치봇 — <code>02_servo_test</code>(312줄)·<code>03_walk_test</code>(463줄)·<code>06_mic_reaction_test</code>(477줄), ESP-IDF v5.5.4 이식</div>
+
+  <h3 class="sub">③ 분야를 가리지 않는 CS 기본기 &amp; 협업 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 넓은 기반</span></h3>
+  <ul>
+    <li><b>상태 머신</b>을 게임 전투(BattlePhase)와 게임 AI(EnemyFSM), 디바이스 제어에 반복 적용.</li>
+    <li><b>데이터 계층</b>을 JSON·SQLite·ContentProvider·CSV로 상황에 맞게 선택.</li>
+    <li><b>협업</b>: Git 기능별 브랜치·PR, QA 피드백 15+항목 반복 반영, 팀 문서를 코드로 번역.</li>
+  </ul>
+  <div class="callout"><span class="t">근거</span>FPS(FSM·NavMesh) · Android(SQLite·Provider·Canvas) · ROS2(기구학·설계) · INSPECTOR(팀 협업)</div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">05 / 07</span>
+</section>
+
+<!-- ===== 6. AI 협업 개발 (바이브 코딩) ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">06</span>개발 방식 — AI 협업 개발(바이브 코딩)</h2>
+  <div class="sec-line"></div>
+  <p class="lead">이 프로젝트들의 상당 부분은 <b>AI 협업 개발(바이브 코딩)</b>으로 구현했습니다.
+     도구가 코드를 빠르게 써 주는 만큼, 제 역할은 <em>무엇을 왜 만들지 정하고, 결과를 검증·통합·디버깅</em>하는 데 있었습니다.
+     이 점을 숨기지 않고, 하나의 <b>실전 역량</b>이자 <b>학습의 출발점</b>으로 정리합니다.</p>
+
+  <h3 class="sub">역할 분담 — 내가 한 것 vs AI가 가속한 것</h3>
+  <table>
+    <tr><th style="width:34%">작업</th><th style="width:22%">주도</th><th>내용</th></tr>
+    <tr><td>요구 정의 · 문제 분해</td><td><b>본인</b></td><td>무엇을·왜 만들지, 완료 기준 설정</td></tr>
+    <tr><td>아키텍처 · 구조 설계 판단</td><td><b>본인</b></td><td>partial 분리·데이터 주도·단계별 브링업 등 결정</td></tr>
+    <tr><td>반복 구현 · 보일러플레이트</td><td>AI 가속</td><td>정의된 구조를 코드로 빠르게 채움</td></tr>
+    <tr><td>환경 설정 · 빌드 함정 해결</td><td>협업</td><td>내 검증 + AI 제안 (ESP-IDF·MCP 등)</td></tr>
+    <tr><td>코드 리뷰 · 통합 · 디버깅</td><td><b>본인</b></td><td>동작 검증, 버그 추적, 조각 통합</td></tr>
+    <tr><td>에디터 · 하드웨어 조작</td><td>MCP 자동화</td><td>Unity MCP·플래시 스크립트를 <b>내 지시</b>로 실행</td></tr>
+  </table>
+
+  <div class="grid2">
+    <div class="card">
+      <h4>사용한 AI 협업 도구</h4>
+      <p style="margin:0;font-size:9pt"><b>Claude Code</b> · <b>Unity MCP</b>(에디터 자동 조작) · ESP-IDF 워크플로우 ·
+      <code>execute_code</code>(애니메이터·NavMesh 빌드) · 플래시/데모 <b>Bash 자동화</b>.</p>
+    </div>
+    <div class="card">
+      <h4>나의 바이브 코딩 루프</h4>
+      <p style="margin:0;font-size:9pt">① MCP로 현재 상태 확인 → ② 작업 이해를 <b>내 말로</b> 정리 →
+      ③ 확인·승인 → ④ 실행 후 <b>직접 검증·수정</b>. 이해하지 못한 채 복붙하지 않는 것을 원칙으로 합니다.</p>
+    </div>
+  </div>
+
+  <div class="callout why">
+    <span class="t">이 방식을 어떻게 바라보는가 (정직하게)</span>
+    AI 협업 개발은 <b>도구 오케스트레이션 · 프롬프트 설계 · MCP 자동화</b>라는 실전 역량이라고 생각합니다.
+    동시에, 이렇게 <b>빠르게 “만들 수 있게” 된 것</b>과 <b>“밑바닥까지 이해한 것”</b> 사이엔 아직 간극이 있음을 인정합니다.
+    그 간극을 메우기 위한 학습 계획을 다음 장에 정리했습니다.
+  </div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">06 / 07</span>
+</section>
+
+<!-- ===== 7. 학습 가이드 & 성장 계획 ===== -->
+<section class="page">
+  <h2 class="sec"><span class="no">07</span>학습 가이드 &amp; 성장 계획</h2>
+  <div class="sec-line"></div>
+  <p class="lead">목표는 분명합니다 — <b>“AI와 함께 만들 수 있다”</b>를
+     <em>“도구 없이 설명하고 스스로 다시 만들 수 있다”</em>로 바꾸는 것.
+     바이브 코딩으로 다룬 개념을 도메인별로 다시 학습할 계획입니다.</p>
+
+  <h3 class="sub">도메인별 학습 계획</h3>
+  <table>
+    <tr><th style="width:20%">영역</th><th style="width:30%">지금 (바이브로 구현)</th><th style="width:28%">학습 목표</th><th>방법 · 자료</th></tr>
+    <tr><td><b>C# / OOP</b></td><td>CRTP·제네릭·이벤트 사용</td><td>제네릭·델리게이트 원리 이해</td><td>MS Docs · 『C# in Depth』 · 재구현</td></tr>
+    <tr><td><b>자료구조·알고리즘</b></td><td>List·Dictionary 활용</td><td>시간복잡도·자료구조 직접 구현</td><td>백준·알고리즘 문제 · 노트 정리</td></tr>
+    <tr><td><b>디자인 패턴</b></td><td>싱글톤·상태머신 적용</td><td>패턴 의도·트레이드오프 이해</td><td>『Head First Design Patterns』</td></tr>
+    <tr><td><b>Unity 내부</b></td><td>MonoBehaviour·SO 사용</td><td>생명주기·코루틴·메모리·프로파일링</td><td>Unity Learn · 프로파일러 실습</td></tr>
+    <tr><td><b>임베디드 C</b></td><td>I2C/I2S 브링업</td><td>포인터·메모리·RTOS 스케줄링 원리</td><td>ESP-IDF 문서 · 데이터시트 직독</td></tr>
+    <tr><td><b>로봇 제어</b></td><td>차동구동 조사</td><td>기구학·PID 제어 직접 구현</td><td>ROS2 튜토리얼 · 제어이론 강의</td></tr>
+  </table>
+
+  <h3 class="sub">학습 원칙 — 바이브 코딩을 이해로 전환하는 3단계</h3>
+  <div class="fig avoid">
+    <svg viewBox="0 0 700 74" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
+      <defs><marker id="a3" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#33386e"/></marker></defs>
+      <g font-size="9" text-anchor="middle">
+        <g><rect x="8" y="18" width="200" height="42" rx="9" fill="#ecedf7" stroke="#33386e"/><text x="108" y="36" font-weight="700" fill="#33386e">① 다시 읽기</text><text x="108" y="51" font-size="8" fill="#565663">한 줄씩 읽고 모르는 부분 표시</text></g>
+        <g><rect x="250" y="18" width="200" height="42" rx="9" fill="#f8ece7" stroke="#b1462c"/><text x="350" y="36" font-weight="700" fill="#b1462c">② 개념 학습</text><text x="350" y="51" font-size="8" fill="#565663">그 개념만 따로 공부·노트 정리</text></g>
+        <g><rect x="492" y="18" width="200" height="42" rx="9" fill="#e7f1f0" stroke="#1f6f6b"/><text x="592" y="36" font-weight="700" fill="#1f6f6b">③ 재구현</text><text x="592" y="51" font-size="8" fill="#565663">도구 없이 축소판 직접 구현</text></g>
+      </g>
+      <g stroke="#33386e" stroke-width="1.6" marker-end="url(#a3)" fill="none">
+        <line x1="208" y1="39" x2="248" y2="39"/><line x1="450" y1="39" x2="490" y2="39"/>
+      </g>
+    </svg>
+    <div class="cap">그림 3. “읽고 → 이해하고 → 스스로 다시 만든다” — 이해 없이 넘어간 코드를 남기지 않는 학습 루프</div>
+  </div>
+
+  <div class="callout"><span class="t">지향점</span>
+    AI 협업으로 <b>빠르게 완주하는 실행력</b>과, 그 위에 <b>스스로 설명·재구현하는 기본기</b>를 함께 갖춰 —
+    <b>“하드웨어를 이해하고, AI를 도구로 부리는 소프트웨어 개발자”</b>로 성장하려 합니다.
+  </div>
+
+  <div style="margin-top:18px;padding-top:14px;border-top:2px solid var(--accent);display:flex;justify-content:space-between;align-items:baseline;">
+    <div style="font-weight:800;font-size:12pt;color:var(--accent)">고성모 · Software Developer</div>
+    <div style="font-size:9pt;color:var(--sub)">Game · Embedded · Robotics · 2026</div>
+  </div>
+
+  <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
+  <span class="pager">07 / 07</span>
+</section>
+
+</body>
+</html>
