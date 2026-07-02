@@ -17,6 +17,10 @@
 | **꼬들 (make_world)** | 웹 게임 | JavaScript | [make_world](https://github.com/G0Sun9M0/make_world) |
 | **PHP 회원 인증 웹앱** | 웹 | PHP | [PHP_assignment](https://github.com/G0Sun9M0/PHP_assignment) |
 
+## 🏅 수상 · 자격
+- **금상** — 영남이공대 산업체 수요특화형 AI교육 (2026): [상장 보기](수료증_상장/상장_금상_AI교육.pdf)
+- **수료** — 산업체 수요특화형 AI교육 (15h): [수료증 보기](수료증_상장/수료증_고성모_AI교육.pdf)
+
 ## 🎯 집중 스킬
 - **대규모 코드를 나누는 아키텍처 감각** — partial class 분리 · CRTP 제네릭 · 데이터 주도 설계 (INSPECTOR)
 - **하드웨어를 바닥부터 올리는 임베디드 브링업** — I2C 서보 · I2S 오디오 · 크로스플랫폼 빌드 (코치봇)
