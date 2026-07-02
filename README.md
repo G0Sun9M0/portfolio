@@ -3,7 +3,7 @@
 게임 · 임베디드 · 로보틱스 · 웹을 넘나드는 소프트웨어 개발자 **고성모**의 포트폴리오입니다.
 
 ## 📄 포트폴리오 보기
-- **PDF (권장)**: [고성모_포트폴리오.pdf](고성모_포트폴리오.pdf) — A4 8쪽
+- **PDF (권장)**: [고성모_포트폴리오.pdf](고성모_포트폴리오.pdf) — A4 9쪽
 - **웹(HTML)**: [portfolio.html](portfolio.html)
 - **GitHub Pages**: 저장소 Settings → Pages를 켜면 `index.html`이 웹으로 바로 열립니다.
 
@@ -17,9 +17,8 @@
 | **꼬들 (make_world)** | 웹 게임 | JavaScript | [make_world](https://github.com/G0Sun9M0/make_world) |
 | **PHP 회원 인증 웹앱** | 웹 | PHP | [PHP_assignment](https://github.com/G0Sun9M0/PHP_assignment) |
 
-## 🏅 수상 · 자격
-- **금상** — 영남이공대 산업체 수요특화형 AI교육 (2026): [상장 보기](수료증_상장/상장_금상_AI교육.pdf)
-- **수료** — 산업체 수요특화형 AI교육 (15h): [수료증 보기](수료증_상장/수료증_고성모_AI교육.pdf)
+## 🎓 교육 수료
+- **수료** — 산업체 수요특화형 AI교육 (15h, 영남이공대학교, 2026): [수료증 보기](수료증_상장/수료증_고성모_AI교육.pdf)
 
 ## 🎯 집중 스킬
 - **대규모 코드를 나누는 아키텍처 감각** — partial class 분리 · CRTP 제네릭 · 데이터 주도 설계 (INSPECTOR)
