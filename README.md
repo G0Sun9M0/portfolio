@@ -4,7 +4,7 @@
 
 ## 📄 포트폴리오 보기
 - **PDF (권장)**: [고성모_포트폴리오.pdf](고성모_포트폴리오.pdf) — A4 9쪽
-- **PPT (16:9)**: [고성모_포트폴리오_PPT.pptx](고성모_포트폴리오_PPT.pptx) — 발표용 8슬라이드
+- **발표용 슬라이드 (16:9 PDF)**: [고성모_포트폴리오_PPT.pdf](고성모_포트폴리오_PPT.pdf) — 8슬라이드
 - **웹(HTML)**: [portfolio.html](portfolio.html)
 - **GitHub Pages**: 저장소 Settings → Pages를 켜면 `index.html`이 웹으로 바로 열립니다.
 
