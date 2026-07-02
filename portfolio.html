@@ -121,7 +121,7 @@
   <div class="domains">
     <span>Unity · C# 게임 개발</span>
     <span>ESP-IDF · C 임베디드</span>
-    <span>ROS2 로보틱스</span>
+    <span>로보틱스 (학습 중)</span>
     <span>웹 (JS · PHP)</span>
   </div>
   <dl class="meta">
@@ -146,19 +146,20 @@
   <table>
     <tr><th style="width:20%">구분</th><th>보유 스킬 <span style="font-weight:400;opacity:.7">(★ = 집중 영역)</span></th></tr>
     <tr><td><b>언어</b></td><td><b>C# ★</b> · <b>C / C++ ★</b>(임베디드) · JavaScript · PHP · Python</td></tr>
-    <tr><td><b>엔진 · 프레임워크</b></td><td><b>Unity ★</b> · ESP-IDF / FreeRTOS ★ · ROS2 · 바닐라 JS · PHP</td></tr>
+    <tr><td><b>엔진 · 프레임워크</b></td><td><b>Unity ★</b> · ESP-IDF / FreeRTOS ★ · 바닐라 JS · PHP</td></tr>
     <tr><td><b>설계 · 패턴</b></td><td>상태 머신(FSM) · 싱글톤 / CRTP 제네릭 · 데이터 주도 설계 · partial class 모듈화 · 이벤트 기반 결합</td></tr>
     <tr><td><b>데이터 · 저장</b></td><td>JSON · ScriptableObject · PlayerPrefs · CSV 로깅 · PHP 세션 · 회원 인증</td></tr>
-    <tr><td><b>하드웨어 · 통신</b></td><td>I2C(PCA9685 서보) · I2S(마이크 / 스피커) · GPIO / PWM · UART · 차동구동 기구학</td></tr>
+    <tr><td><b>하드웨어 · 통신</b></td><td>I2C(MPU6050 기울기 센서) · I2S(INMP441 · MAX98357A) · GPIO / PWM · UART</td></tr>
     <tr><td><b>도구 · 협업</b></td><td>Git / GitHub 브랜치 전략 · PR 리뷰 · 크로스플랫폼 빌드(macOS ↔ Windows) · QA / 디버깅</td></tr>
+    <tr><td><b>학습 중 · 관심</b></td><td>ROS2 · 로봇 제어(기구학 · PID) · 자료구조 · 알고리즘 심화 · 임베디드 저수준 원리</td></tr>
   </table>
 
   <h3 class="sub">프로젝트 요약 <span style="font-weight:400;font-size:9pt;color:var(--sub)">(모두 GitHub 공개)</span></h3>
   <table>
     <tr><th style="width:22%">프로젝트</th><th style="width:15%">유형</th><th>스택 · 핵심</th><th style="width:15%">역할</th></tr>
     <tr><td><b>괴이탐사국: INSPECTOR</b></td><td>팀 · 캡스톤 게임</td><td>Unity·C# — 전투 엔진 / 데이터 주도 아키텍처</td><td>클라이언트 개발 (단독)</td></tr>
-    <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — 기울기 센서 자세 감지 / AI 음성</td><td>펌웨어·브링업</td></tr>
-    <tr><td><b>ROS2 운반 로봇(AGV)</b></td><td>팀 · 로보틱스</td><td>ROS2 — 라인트레이싱 / 차동구동 설계</td><td>문제정의·설계</td></tr>
+    <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — MPU6050 자세 감지 / AI 음성</td><td>펌웨어·브링업</td></tr>
+    <tr><td><b>운반 로봇(AGV) 설계</b></td><td>로보틱스 학습(팀)</td><td>문제정의 · 차동구동 조사(9과제) — ROS2 학습 중</td><td>문제정의·조사</td></tr>
     <tr><td><b>꼬들 (make_world)</b></td><td>웹 게임</td><td>JavaScript — 한글 Wordle 게임 로직 / 단어 DB</td><td>개인 구현</td></tr>
     <tr><td><b>PHP 회원 인증 웹앱</b></td><td>웹</td><td>PHP — 로그인·회원가입·중복확인·세션</td><td>개인 구현</td></tr>
   </table>
@@ -256,7 +257,7 @@
     <span class="name">ESP32-S3 기반 AI 자세 코치 로봇</span>
     <span class="role">ESP-IDF v5.5.4 · C / C++ · FreeRTOS · Xiaozhi AI · 펌웨어 &amp; 하드웨어 브링업</span>
   </div>
-  <p class="lead"><em>기울기 센서</em>로 앞으로 숙인 자세를 감지하면 <em>AI 음성</em>으로 교정해 주는 로봇.
+  <p class="lead"><em>기울기 센서(MPU6050)</em>로 앞으로 숙인 자세를 감지하면 <em>AI 음성</em>으로 교정해 주는 로봇.
      원래 키트의 <b>4족 보행 기능은 목적에 불필요</b>해서 <b>서보를 제거</b>하고, 자세 감지·음성에 집중했습니다.</p>
 
   <h3 class="sub">시스템 구성 — 남긴 것과 제거한 것</h3>
@@ -264,7 +265,7 @@
     <svg viewBox="0 0 720 122" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
       <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f6f6b"/></marker></defs>
       <g font-size="8.6" text-anchor="middle">
-        <g><rect x="4"   y="16" width="150" height="44" rx="9" fill="#f8ece7" stroke="#b1462c"/><text x="79" y="35" font-weight="700" fill="#b1462c">기울기 센서</text><text x="79" y="49" font-size="7.4" fill="#565663">자세(숙임) 감지</text></g>
+        <g><rect x="4"   y="16" width="150" height="44" rx="9" fill="#f8ece7" stroke="#b1462c"/><text x="79" y="35" font-weight="700" fill="#b1462c">MPU6050</text><text x="79" y="49" font-size="7.4" fill="#565663">기울기 센서 · 자세</text></g>
         <g><rect x="188" y="16" width="150" height="44" rx="9" fill="#faf9fb" stroke="#e3e3ea"/><text x="263" y="35" font-weight="700">ESP32-S3</text><text x="263" y="49" font-size="7.4" fill="#565663">자세 판단 · FreeRTOS</text></g>
         <g><rect x="372" y="16" width="160" height="44" rx="9" fill="#faf9fb" stroke="#e3e3ea"/><text x="452" y="35" font-weight="700">I2S 마이크 · 스피커</text><text x="452" y="49" font-size="7.4" fill="#565663">INMP441 · MAX98357A</text></g>
         <g><rect x="566" y="16" width="150" height="44" rx="9" fill="#141525"/><text x="641" y="35" font-weight="700" fill="#c3c6e6">Xiaozhi AI 음성</text><text x="641" y="49" font-size="7.4" fill="#9aa0d8">자세 교정 안내</text></g>
@@ -283,9 +284,9 @@
 
   <div class="grid2">
     <div class="card">
-      <h4>기울기 센서로 자세 감지</h4>
-      <p style="margin:0;font-size:9pt">사용자가 <b>앞으로 숙였는지</b>를 기울기 센서로 판정해,
-      자세가 무너지면 코칭 이벤트를 발생시키는 <b>핵심 입력</b>을 구성.</p>
+      <h4>MPU6050 기울기 센서로 자세 감지</h4>
+      <p style="margin:0;font-size:9pt"><b>MPU6050</b>(자이로·가속도) IMU를 <b>I2C</b>로 읽어 <b>앞으로 숙인 각도</b>를 판정.
+      자세가 무너지면 코칭 이벤트를 발생시키는 <b>핵심 입력</b>.</p>
     </div>
     <div class="card">
       <h4>I2S 오디오 입출력</h4>
@@ -307,7 +308,7 @@
   <div class="card" style="margin-top:8px">
     <span style="font-size:8.6pt;color:var(--sub)">사용 스킬</span><br>
     <span class="chip">C / C++</span><span class="chip">ESP-IDF</span><span class="chip">FreeRTOS</span>
-    <span class="chip t2">기울기 센서</span><span class="chip t2">I2S 오디오</span><span class="chip t2">INMP441 · MAX98357A</span>
+    <span class="chip t2">MPU6050 (I2C)</span><span class="chip t2">I2S 오디오</span><span class="chip t2">INMP441 · MAX98357A</span>
     <span class="chip t3">크로스플랫폼 빌드</span><span class="chip t3">Bash 자동화</span><span class="chip t3">AI 음성 연동</span>
   </div>
 
@@ -319,24 +320,24 @@
 <section class="page">
   <h2 class="sec"><span class="no">04</span>프로젝트 ③④⑤ — 로보틱스 · 웹 게임 · 웹</h2>
   <div class="sec-line"></div>
-  <p class="lead">대표 프로젝트 외에도 <b>로봇 시스템 설계, 웹 게임, 웹 인증 시스템</b>을 각각 GitHub 저장소로 공개해
-     폭넓은 CS 기본기를 검증했습니다.</p>
+  <p class="lead">대표 프로젝트 외에도 <b>로보틱스 기초 조사, 웹 게임, 웹 인증 시스템</b>을 각각 GitHub 저장소로 공개했습니다.
+     <b>ROS2는 아직 학습 과정</b>이라 정직하게 “학습 중”으로 표기합니다.</p>
 
-  <h3 class="sub">③ ROS2 운반 로봇(AGV) 설계 &amp; 로보틱스 기구학</h3>
+  <h3 class="sub">③ 로보틱스 기초 학습 — 운반 로봇 설계 &amp; 기구학 조사 <span style="font-weight:400;font-size:9pt;color:var(--sub)">— 학습 중</span></h3>
   <div class="grid2">
     <div class="card soft">
-      <h4>자율주행 운반 로봇 프로토타입 정의</h4>
-      <p style="margin:0;font-size:9pt">공정 부품 운송 자동화를 위한 <b>라인트레이싱 AGV</b> 문제정의·요구사항 설계.
-      경로 인식, <b>CSV 주행 데이터 로깅</b>, 초음파/LiDAR 안전정지, <b>MES·PLC 연동 규격</b>, 1시간 구동 등 실무형 요구 도출.</p>
+      <h4>운반 로봇(AGV) 문제정의·요구사항</h4>
+      <p style="margin:0;font-size:9pt">공정 부품 운송 자동화를 위한 <b>라인트레이싱 AGV</b>의 문제정의·요구사항을 설계.
+      경로 인식, <b>CSV 주행 로깅</b>, 초음파/LiDAR 안전정지, <b>MES·PLC 연동 규격</b> 등 실무형 요구를 정리.</p>
     </div>
     <div class="card soft">
-      <h4>로봇 기구학·제어 이론</h4>
-      <p style="margin:0;font-size:9pt"><b>차동구동</b>(v = ωR), 라디안, 엔코더, 모터, 센서, 마이크로컨트롤러, 제어 등
-      <b>9개 주제</b>를 출처 교차검증하며 정리. ROS2 참고 코드 포함.</p>
+      <h4>로봇 기구학·제어 조사 (9주제)</h4>
+      <p style="margin:0;font-size:9pt"><b>차동구동</b>(v = ωR)·라디안·엔코더·모터·센서·제어 등 <b>9개 주제</b>를 출처 교차검증하며 정리.
+      <b>ROS2 실제 구현은 앞으로 학습할 목표</b>입니다.</p>
     </div>
   </div>
   <p style="font-size:8.8pt;margin:2px 0 4px">
-    <span class="chip t3">ROS2</span><span class="chip t3">AGV 시스템 설계</span><span class="chip t3">차동구동 기구학</span><span class="chip t3">센서·제어 이론</span>
+    <span class="chip t3">문제정의·요구사항</span><span class="chip t3">차동구동 기구학(조사)</span><span class="chip t3">ROS2 (학습 중)</span>
   </p>
 
   <h3 class="sub">④ 꼬들 (make_world) — 한글 Wordle 웹 게임</h3>
@@ -400,7 +401,7 @@
     <li><b>데이터 계층</b>을 JSON·CSV 로깅·PHP 세션·단어 DB(JS)로 상황에 맞게 선택.</li>
     <li><b>협업</b>: Git 기능별 브랜치·PR, QA 피드백 15+항목 반복 반영, 팀 문서를 코드로 번역.</li>
   </ul>
-  <div class="callout"><span class="t">근거</span>꼬들(JS 게임 로직) · PHP 회원 인증(세션) · ROS2(기구학·설계) · INSPECTOR(팀 협업)</div>
+  <div class="callout"><span class="t">근거</span>꼬들(JS 게임 로직) · PHP 회원 인증(세션) · 로보틱스 조사(차동구동·기구학) · INSPECTOR(팀 협업)</div>
 
   <span class="brand">SUNGMO KO · DEV PORTFOLIO</span>
   <span class="pager">05 / 07</span>
@@ -465,7 +466,7 @@
     <tr><td><b>디자인 패턴</b></td><td>싱글톤·상태머신 적용</td><td>패턴 의도·트레이드오프 이해</td><td>『Head First Design Patterns』</td></tr>
     <tr><td><b>Unity 내부</b></td><td>MonoBehaviour·SO 사용</td><td>생명주기·코루틴·메모리·프로파일링</td><td>Unity Learn · 프로파일러 실습</td></tr>
     <tr><td><b>임베디드 C</b></td><td>I2C/I2S 브링업</td><td>포인터·메모리·RTOS 스케줄링 원리</td><td>ESP-IDF 문서 · 데이터시트 직독</td></tr>
-    <tr><td><b>로봇 제어</b></td><td>차동구동 조사</td><td>기구학·PID 제어 직접 구현</td><td>ROS2 튜토리얼 · 제어이론 강의</td></tr>
+    <tr><td><b>ROS2 · 로봇 제어</b></td><td>차동구동 등 9주제 조사 (학습 중)</td><td>ROS2 노드·기구학·PID 직접 구현</td><td>ROS2 공식 튜토리얼 · 제어이론</td></tr>
   </table>
 
   <h3 class="sub">학습 원칙 — 바이브 코딩을 이해로 전환하는 3단계</h3>
