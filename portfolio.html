@@ -157,7 +157,7 @@
   <table>
     <tr><th style="width:22%">프로젝트</th><th style="width:15%">유형</th><th>스택 · 핵심</th><th style="width:15%">역할</th></tr>
     <tr><td><b>괴이탐사국: INSPECTOR</b></td><td>팀 · 캡스톤 게임</td><td>Unity·C# — 전투 엔진 / 데이터 주도 아키텍처</td><td>클라이언트 개발 (단독)</td></tr>
-    <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — 서보 보행 / AI 음성</td><td>펌웨어·브링업</td></tr>
+    <tr><td><b>바른자세 코치봇</b></td><td>임베디드 AI 로봇</td><td>ESP32-S3·ESP-IDF·C — 기울기 센서 자세 감지 / AI 음성</td><td>펌웨어·브링업</td></tr>
     <tr><td><b>ROS2 운반 로봇(AGV)</b></td><td>팀 · 로보틱스</td><td>ROS2 — 라인트레이싱 / 차동구동 설계</td><td>문제정의·설계</td></tr>
     <tr><td><b>꼬들 (make_world)</b></td><td>웹 게임</td><td>JavaScript — 한글 Wordle 게임 로직 / 단어 DB</td><td>개인 구현</td></tr>
     <tr><td><b>PHP 회원 인증 웹앱</b></td><td>웹</td><td>PHP — 로그인·회원가입·중복확인·세션</td><td>개인 구현</td></tr>
@@ -165,7 +165,7 @@
 
   <div class="grid3" style="margin-top:6px">
     <div class="card soft"><h4 style="color:var(--accent)">깊이 — 게임 아키텍처</h4><p style="margin:0;font-size:9pt">약 19,500줄 규모 전투 시스템을 partial class·제네릭·데이터 주도로 설계. <b>대규모 코드를 나누는 힘.</b></p></div>
-    <div class="card soft"><h4 style="color:var(--accent2)">폭 — 하드웨어 브링업</h4><p style="margin:0;font-size:9pt">I2C 서보, I2S 오디오, 4족 보행을 <b>베어메탈 C로 직접 구동.</b> AI 프레임워크 크로스빌드까지.</p></div>
+    <div class="card soft"><h4 style="color:var(--accent2)">폭 — 하드웨어 브링업</h4><p style="margin:0;font-size:9pt">I2S 오디오·기울기 센서·AI 음성을 <b>베어메탈 C로 통합.</b> 불필요한 서보/보행은 <b>과감히 제거.</b></p></div>
     <div class="card soft"><h4 style="color:var(--teal)">기초 — 웹 · CS 펀더멘털</h4><p style="margin:0;font-size:9pt">JS 게임 로직·PHP 회원 인증·로봇 기구학 등 <b>분야를 가리지 않는 기본기.</b></p></div>
   </div>
 
@@ -253,45 +253,44 @@
   <h2 class="sec"><span class="no">03</span>대표 프로젝트 ② — 바른자세 코치봇</h2>
   <div class="sec-line"></div>
   <div class="pj-head">
-    <span class="name">ESP32-S3 기반 AI 4족 자세 코치 로봇</span>
+    <span class="name">ESP32-S3 기반 AI 자세 코치 로봇</span>
     <span class="role">ESP-IDF v5.5.4 · C / C++ · FreeRTOS · Xiaozhi AI · 펌웨어 &amp; 하드웨어 브링업</span>
   </div>
-  <p class="lead">센서가 <em>앞으로 숙인 자세</em>를 감지하면 <em>AI 음성</em>으로 자세를 교정해 주는 4족 로봇.
-     보드 점등부터 서보 보행·오디오·AI 연동까지 <b>하드웨어를 바닥부터 직접 올렸습니다.</b></p>
+  <p class="lead"><em>기울기 센서</em>로 앞으로 숙인 자세를 감지하면 <em>AI 음성</em>으로 교정해 주는 로봇.
+     원래 키트의 <b>4족 보행 기능은 목적에 불필요</b>해서 <b>서보를 제거</b>하고, 자세 감지·음성에 집중했습니다.</p>
 
-  <h3 class="sub">단계별 하드웨어 브링업 파이프라인</h3>
+  <h3 class="sub">시스템 구성 — 남긴 것과 제거한 것</h3>
   <div class="fig avoid">
-    <svg viewBox="0 0 720 108" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
-      <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#b1462c"/></marker></defs>
-      <g font-size="8.5" text-anchor="middle">
-        <g><rect x="2"   y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="44" y="52" font-weight="700">00 보드</text><text x="44" y="66" font-size="7" fill="#565663">FreeRTOS</text></g>
-        <g><rect x="98"  y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="140" y="52" font-weight="700">01 OLED</text><text x="140" y="66" font-size="7" fill="#565663">디스플레이</text></g>
-        <g><rect x="194" y="34" width="84" height="42" rx="8" fill="#f8ece7" stroke="#b1462c"/><text x="236" y="52" font-weight="700" fill="#b1462c">02 서보</text><text x="236" y="66" font-size="7" fill="#565663">I2C·PCA9685</text></g>
-        <g><rect x="290" y="34" width="84" height="42" rx="8" fill="#f8ece7" stroke="#b1462c"/><text x="332" y="52" font-weight="700" fill="#b1462c">03 보행</text><text x="332" y="66" font-size="7" fill="#565663">4족 게이트</text></g>
-        <g><rect x="386" y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="428" y="52" font-weight="700">04 스피커</text><text x="428" y="66" font-size="7" fill="#565663">I2S 출력</text></g>
-        <g><rect x="482" y="34" width="84" height="42" rx="8" fill="#faf9fb" stroke="#e3e3ea"/><text x="524" y="52" font-weight="700">05 마이크</text><text x="524" y="66" font-size="7" fill="#565663">I2S 입력</text></g>
-        <g><rect x="578" y="34" width="84" height="42" rx="8" fill="#e7f1f0" stroke="#1f6f6b"/><text x="620" y="52" font-weight="700" fill="#1f6f6b">06 반응</text><text x="620" y="66" font-size="7" fill="#565663">자세→AI</text></g>
-        <g><rect x="674" y="34" width="44" height="42" rx="8" fill="#141525"/><text x="696" y="55" font-weight="700" fill="#c3c6e6" font-size="8">AI</text><text x="696" y="67" font-size="6.5" fill="#9aa0d8">Xiaozhi</text></g>
+    <svg viewBox="0 0 720 122" xmlns="http://www.w3.org/2000/svg" font-family="Apple SD Gothic Neo,sans-serif">
+      <defs><marker id="a2" markerWidth="9" markerHeight="9" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#1f6f6b"/></marker></defs>
+      <g font-size="8.6" text-anchor="middle">
+        <g><rect x="4"   y="16" width="150" height="44" rx="9" fill="#f8ece7" stroke="#b1462c"/><text x="79" y="35" font-weight="700" fill="#b1462c">기울기 센서</text><text x="79" y="49" font-size="7.4" fill="#565663">자세(숙임) 감지</text></g>
+        <g><rect x="188" y="16" width="150" height="44" rx="9" fill="#faf9fb" stroke="#e3e3ea"/><text x="263" y="35" font-weight="700">ESP32-S3</text><text x="263" y="49" font-size="7.4" fill="#565663">자세 판단 · FreeRTOS</text></g>
+        <g><rect x="372" y="16" width="160" height="44" rx="9" fill="#faf9fb" stroke="#e3e3ea"/><text x="452" y="35" font-weight="700">I2S 마이크 · 스피커</text><text x="452" y="49" font-size="7.4" fill="#565663">INMP441 · MAX98357A</text></g>
+        <g><rect x="566" y="16" width="150" height="44" rx="9" fill="#141525"/><text x="641" y="35" font-weight="700" fill="#c3c6e6">Xiaozhi AI 음성</text><text x="641" y="49" font-size="7.4" fill="#9aa0d8">자세 교정 안내</text></g>
       </g>
-      <g stroke="#b1462c" stroke-width="1.4" marker-end="url(#a2)" fill="none">
-        <line x1="86" y1="55" x2="96" y2="55"/><line x1="182" y1="55" x2="192" y2="55"/><line x1="278" y1="55" x2="288" y2="55"/>
-        <line x1="374" y1="55" x2="384" y2="55"/><line x1="470" y1="55" x2="480" y2="55"/><line x1="566" y1="55" x2="576" y2="55"/><line x1="662" y1="55" x2="672" y2="55"/>
+      <g stroke="#1f6f6b" stroke-width="1.5" marker-end="url(#a2)" fill="none">
+        <line x1="154" y1="38" x2="186" y2="38"/><line x1="338" y1="38" x2="370" y2="38"/><line x1="532" y1="38" x2="564" y2="38"/>
       </g>
-      <text x="360" y="98" font-size="8" fill="#565663" text-anchor="middle">각 단계를 독립 ESP-IDF 프로젝트로 검증 → 통합 (총 약 2,000줄 C 브링업 코드)</text>
+      <g>
+        <rect x="4" y="78" width="712" height="34" rx="9" fill="#f4f4f6" stroke="#c9c9d2" stroke-dasharray="5 3"/>
+        <text x="360" y="92" font-size="8.4" text-anchor="middle" fill="#8a8a95" font-weight="700">✕ 제거 — 원래 키트의 서보(PCA9685) · 4족 보행 게이트</text>
+        <text x="360" y="104" font-size="7.6" text-anchor="middle" fill="#a0a0aa">02_servo·03_walk에서 실습했으나, 자세 코치엔 불필요 → 데드 하드웨어/코드로 정리</text>
+      </g>
     </svg>
-    <div class="cap">그림 2. 위험을 한 단계씩 줄이는 브링업 전략 — 하나가 확실히 동작한 뒤 다음 하드웨어로 진행</div>
+    <div class="cap">그림 2. 실제 시스템 = 기울기 센서 → 자세 판단 → AI 음성. 보행은 목적에 맞춰 걷어냈다.</div>
   </div>
 
   <div class="grid2">
     <div class="card">
-      <h4>베어메탈 I2C 서보 제어</h4>
-      <p style="margin:0;font-size:9pt">라이브러리 없이 <code>driver/i2c</code>로 <b>PCA9685</b> 16채널 PWM 컨트롤러(0x40)를 직접 제어해
-      다리 서보 각도를 명령. 이를 시퀀스로 엮어 <b>4족 보행 게이트</b> 구현(<code>03_walk_test</code>, 463줄).</p>
+      <h4>기울기 센서로 자세 감지</h4>
+      <p style="margin:0;font-size:9pt">사용자가 <b>앞으로 숙였는지</b>를 기울기 센서로 판정해,
+      자세가 무너지면 코칭 이벤트를 발생시키는 <b>핵심 입력</b>을 구성.</p>
     </div>
     <div class="card">
       <h4>I2S 오디오 입출력</h4>
-      <p style="margin:0;font-size:9pt"><code>i2s_std</code>로 마이크 캡처·스피커 재생을 구성하고,
-      자세 감지 이벤트에 <b>음성 반응</b>을 연결(<code>06_mic_reaction_test</code>, 477줄).</p>
+      <p style="margin:0;font-size:9pt"><code>i2s_std</code>로 <b>INMP441</b> 마이크·<b>MAX98357A</b> 스피커를 구동.
+      포트(<code>I2S_NUM_0</code>) 하나를 마이크↔스피커로 <b>번갈아</b> 사용해 충돌 회피(<code>06_mic_reaction_test</code>).</p>
     </div>
     <div class="card">
       <h4>AI 프레임워크 이식 · 크로스빌드</h4>
@@ -299,16 +298,16 @@
       <b>Windows 전용 가이드를 macOS로 이식</b>해 ESP-IDF v5.5.4로 빌드 성공.</p>
     </div>
     <div class="card">
-      <h4>재현 가능한 실행 환경 구성</h4>
-      <p style="margin:0;font-size:9pt"><code>demo.sh</code>·<code>flash_robot.sh</code>로 포트 자동 탐색·플래시·모니터를 스크립트화 —
-      <b>함정(읽기전용 폴더·IDF_TARGET·포트)</b>을 문서화해 재현성 확보.</p>
+      <h4>불필요한 하드웨어 제거 <span style="font-size:8pt;color:var(--accent2)">(설계 판단)</span></h4>
+      <p style="margin:0;font-size:9pt">키트에 딸린 <b>서보·4족 보행</b>이 목적과 무관함을 확인하고 <b>과감히 제거</b>.
+      단계별 브링업으로 검증 후 <b>남길 것·버릴 것을 구분</b>한 결정.</p>
     </div>
   </div>
 
   <div class="card" style="margin-top:8px">
     <span style="font-size:8.6pt;color:var(--sub)">사용 스킬</span><br>
     <span class="chip">C / C++</span><span class="chip">ESP-IDF</span><span class="chip">FreeRTOS</span>
-    <span class="chip t2">I2C / PCA9685</span><span class="chip t2">I2S 오디오</span><span class="chip t2">GPIO·PWM 서보</span>
+    <span class="chip t2">기울기 센서</span><span class="chip t2">I2S 오디오</span><span class="chip t2">INMP441 · MAX98357A</span>
     <span class="chip t3">크로스플랫폼 빌드</span><span class="chip t3">Bash 자동화</span><span class="chip t3">AI 음성 연동</span>
   </div>
 
@@ -388,11 +387,12 @@
 
   <h3 class="sub">② 하드웨어를 바닥부터 올리는 임베디드 브링업 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 두 번째 집중 영역</span></h3>
   <ul>
-    <li><b>단계적 검증</b>: 보드→OLED→서보→보행→오디오→AI를 <b>독립 프로젝트로 하나씩</b> 확인 후 통합.</li>
-    <li><b>저수준 통신</b>: 라이브러리 없이 I2C(PCA9685)·I2S를 레지스터 수준에서 제어.</li>
-    <li><b>환경 정복</b>: Windows 전용 빌드를 macOS로 이식하고, 실패 함정을 스크립트·문서로 재현 가능하게 정리.</li>
+    <li><b>단계적 검증</b>: 보드→OLED→스피커→마이크→반응→AI를 <b>독립 프로젝트로 하나씩</b> 확인 후 통합.</li>
+    <li><b>저수준 통신</b>: <code>i2s_std</code>로 INMP441 마이크·MAX98357A 스피커를 직접 구동(포트 번갈아 사용).</li>
+    <li><b>목적 중심 정리</b>: 키트의 서보·4족 보행이 불필요함을 확인하고 <b>제거</b> — 남길 것·버릴 것을 구분.</li>
+    <li><b>환경 정복</b>: Windows 전용 빌드를 macOS로 이식, 실패 함정을 스크립트·문서로 재현 가능하게 정리.</li>
   </ul>
-  <div class="callout why"><span class="t">근거</span>바른자세 코치봇 — <code>02_servo_test</code>(312줄)·<code>03_walk_test</code>(463줄)·<code>06_mic_reaction_test</code>(477줄), ESP-IDF v5.5.4 이식</div>
+  <div class="callout why"><span class="t">근거</span>바른자세 코치봇 — 기울기 센서 자세 감지 · <code>05_mic_test</code>·<code>06_mic_reaction_test</code>(477줄) I2S 오디오 · ESP-IDF v5.5.4 이식 · 서보/보행 제거</div>
 
   <h3 class="sub">③ 분야를 가리지 않는 CS 기본기 &amp; 협업 &nbsp;<span style="font-weight:400;font-size:9pt;color:var(--sub)">— 넓은 기반</span></h3>
   <ul>
